@@ -18,7 +18,7 @@ class AppNameWidget extends StatelessWidget {
           width: 40,
           height: 2.5,
           decoration: BoxDecoration(
-            color: AppColors.appPrimaryColor,
+            color: AppColors.appSplashNameColor,
             borderRadius: BorderRadius.circular(2),
           ),
         ),
