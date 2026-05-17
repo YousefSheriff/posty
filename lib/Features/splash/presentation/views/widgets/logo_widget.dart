@@ -15,11 +15,11 @@ class LogoWidget extends StatelessWidget {
         color: AppColors.whiteColor,
         borderRadius: BorderRadius.circular(36),
         border: Border.all(
-          color: AppColors.appPrimaryColor.withOpacity(0.15), width: 0.5,
+          color: AppColors.appPrimaryColor.withValues(alpha: 0.15), width: 0.5,
         ),
         boxShadow: [
           BoxShadow(
-            color: AppColors.appPrimaryColor.withOpacity(0.22),
+            color: AppColors.appPrimaryColor.withValues(alpha: 0.22),
             blurRadius: 48,
             spreadRadius: 0,
             offset: const Offset(0, 16),
