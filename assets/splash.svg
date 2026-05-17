@@ -1,0 +1,16 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- white background for the card -->
+  <rect width="200" height="200" rx="56" fill="white"/>
+
+  <!-- document -->
+  <rect x="30" y="28" width="100" height="124" rx="12" fill="#EDE9FE" stroke="#7C6FF7" stroke-width="5"/>
+
+  <!-- lines of text -->
+  <path d="M50 68H110" stroke="#7C6FF7" stroke-width="5.5" stroke-linecap="round"/>
+  <path d="M50 90H110" stroke="#7C6FF7" stroke-width="5.5" stroke-linecap="round"/>
+  <path d="M50 112H82" stroke="#7C6FF7" stroke-width="5.5" stroke-linecap="round"/>
+
+  <!-- publish check circle -->
+  <circle cx="148" cy="148" r="36" fill="#7C6FF7"/>
+  <path d="M134 148L144 158L163 138" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
