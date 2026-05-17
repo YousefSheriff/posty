@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:posty/Features/auth/presentation/views/login_screen.dart';
 import 'package:posty/Features/auth/presentation/views/widgets/logo_and_app_name_widget.dart';
 import 'package:posty/Features/auth/presentation/views/widgets/outline_button_widget.dart';
 import 'package:posty/Features/auth/presentation/views/widgets/primary_button_widget.dart';
@@ -22,6 +23,14 @@ class MainAuthScreenBody extends StatelessWidget {
             PrimaryButton(
               label: 'Login',
               onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (_)
+                      {
+                        return const LoginScreen();
+                      }),
+                );
 
               },
             ),

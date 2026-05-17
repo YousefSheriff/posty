@@ -7,11 +7,11 @@ void navigationToAuthScreen (BuildContext context)
   {
     Navigator.of(context).pushReplacement(
       PageRouteBuilder(
-        pageBuilder: (_, __, ___)
+        pageBuilder: (_, _, _)
         {
           return const AuthScreen();
         },
-        transitionsBuilder: (_, anim, __, child) => FadeTransition(
+        transitionsBuilder: (_, anim, _, child) => FadeTransition(
           opacity: CurvedAnimation(parent: anim, curve: Curves.easeIn),
           child: child,
         ),
