@@ -1,4 +1,3 @@
-
 abstract class RegisterStates {}
 
 class RegisterInitialState extends RegisterStates{}
@@ -29,15 +28,3 @@ class CreateUserErrorState extends RegisterStates
 }
 
 class RegisterChangeEyeIconState extends RegisterStates{}
-
-class RegisterAddWeekState extends RegisterStates{}
-
-class RegisterRemoveWeekState extends RegisterStates{}
-
-class RegisterAddStepState extends RegisterStates{}
-
-class RegisterRemoveStepState extends RegisterStates{}
-
-class RegisterChangeIslLoadingState extends RegisterStates{}
-
-class RegisterChangeIsAgreeTermsState extends RegisterStates{}

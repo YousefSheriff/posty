@@ -21,9 +21,7 @@ class LoginButtonWidget extends StatelessWidget {
         onTap:onLoginPressed,
         );
       },
-      fallback: (BuildContext context) {
-        return const Center(child: CircularProgressIndicator());
-      },
+      fallback: (BuildContext context) {return const Center(child: CircularProgressIndicator());},
     );
   }
 }

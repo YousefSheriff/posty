@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:posty/Features/auth/presentation/manager/register_cubit/cubit.dart';
 import 'package:posty/Features/auth/presentation/views/login/widgets/form_field_widget.dart';
 import 'package:posty/core/utils/app_colors.dart';
 
-class RegisterFieldsWidget extends StatelessWidget {
+class RegisterFieldsWidget extends StatelessWidget
+{
+  final TextEditingController  nameController ;
+  final TextEditingController  emailController;
+  final TextEditingController  phoneController;
+  final TextEditingController  passwordController;
+  final RegisterCubit cubit;
 
-  const RegisterFieldsWidget({super.key,});
+
+
+  const RegisterFieldsWidget({super.key, required this.nameController, required this.emailController, required this.phoneController, required this.passwordController, required this.cubit,});
 
   @override
   Widget build(BuildContext context)
   {
-    var  nameController =TextEditingController();
-    var  emailController = TextEditingController();
-    var  phoneController = TextEditingController();
-    var  passwordController = TextEditingController();
-
-
-
     return  Column(
       children: [
         Field(
@@ -59,13 +61,16 @@ class RegisterFieldsWidget extends StatelessWidget {
           label: 'Password',
           hint: '••••••••',
           icon: Icons.lock_outline_rounded,
+          obscure: cubit.isPassword,
           suffix: GestureDetector(
             onTap: ()
             {
+              cubit.changeEyeIcon();
             },
-            child: Icon(Icons.eighteen_mp , color: AppColors.textSecondaryColor, size: 20),
+            child: Icon(cubit.suffix, color: AppColors.textSecondaryColor, size: 20,),
           ),
-          validator: (value) {
+          validator: (value)
+          {
             if (value == null || value.isEmpty) return 'enter password';
             return null;
           },
