@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:posty/Features/posts/presentation/views/home_posts/posts_screen.dart';
-// import 'package:posty/Features/posts_ui_static/presentation/views/posts_list/posts_list_screen.dart';
 import 'package:posty/core/network/network_cubit/cubit.dart';
 import 'package:posty/core/shared/bloc_observer.dart';
 import 'package:bloc/bloc.dart';

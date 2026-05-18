@@ -13,8 +13,29 @@ class PostsListBody extends StatelessWidget {
     return Column(
       children: [
         SearchFieldWidget(onChanged: (value){}),
-        PostCardWidget(post:model)
+
+        Expanded(
+          child:postsList(model),
+        ),
+
       ],
     );
   }
+
+  Widget postsList(PostModel posts)
+  {
+    return ListView.separated(
+      physics: const BouncingScrollPhysics(),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+      itemCount: 20,
+      separatorBuilder: (context, index)
+      {
+        return const SizedBox(height: 12);
+      },
+      itemBuilder: (context, index) {
+        return PostCardWidget(post: posts);
+      },
+    );
+  }
+
 }
