@@ -59,3 +59,23 @@ void showToast({
     fontSize: 16.0,
   );
 }
+
+
+
+SnackBar showSnackBar()
+{
+  return SnackBar(
+    duration: const Duration(days: 1),
+    backgroundColor: Colors.red.shade700,
+    content: const Row(
+      children: [
+        Icon(Icons.wifi_off, color: Colors.white, size: 18),
+        SizedBox(width: 10),
+        Text(
+          'No internet connection',
+          style: TextStyle(color: Colors.white),
+        ),
+      ],
+    ),
+  );
+}

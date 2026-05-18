@@ -4,24 +4,38 @@ import 'package:posty/Features/auth/presentation/manager/login_cubit/states.dart
 import 'package:posty/Features/auth/presentation/views/widgets/primary_button_widget.dart';
 
 class LoginButtonWidget extends StatelessWidget {
-  const LoginButtonWidget({super.key, required this.onLoginPressed,required this.state});
+  const LoginButtonWidget({
+    super.key,
+    required this.onLoginPressed,
+    required this.state,
+  });
 
   final LoginStates state;
-  final VoidCallback onLoginPressed;
-
-
+  final VoidCallback? onLoginPressed;
 
   @override
   Widget build(BuildContext context) {
     return ConditionalBuilder(
       condition: state is! LoginLoadingState,
-      builder: (BuildContext context) {
+      builder: (context)
+      {
+        if (onLoginPressed == null)
+        {
+          return Opacity(
+            opacity: 0.5,
+            child: PrimaryButton(
+              label: 'Login',
+              onTap: () {},
+            ),
+          );
+        }
+
         return PrimaryButton(
           label: 'Login',
-        onTap:onLoginPressed,
+          onTap: onLoginPressed!,
         );
       },
-      fallback: (BuildContext context) {return const Center(child: CircularProgressIndicator());},
+      fallback: (context) {return const Center(child: CircularProgressIndicator());},
     );
   }
 }
