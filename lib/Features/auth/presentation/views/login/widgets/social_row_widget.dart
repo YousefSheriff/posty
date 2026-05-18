@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:posty/core/utils/app_colors.dart';
 import 'package:posty/core/utils/app_styles.dart';
 
-class SocialRow extends StatelessWidget {
-  const SocialRow({super.key});
+class LoginSocialRowWidget extends StatelessWidget {
+  const LoginSocialRowWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

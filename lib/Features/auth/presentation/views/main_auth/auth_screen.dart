@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:posty/Features/auth/presentation/views/auth_screen_body.dart';
+import 'package:posty/Features/auth/presentation/views/main_auth/auth_screen_body.dart';
 import 'package:posty/core/utils/app_colors.dart';
 
 

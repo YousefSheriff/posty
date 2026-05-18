@@ -53,7 +53,7 @@ class _FieldState extends State<Field> {
               validator: widget.validator,
               readOnly: widget.readOnly,
               onTap: widget.onTap,
-              style: AppStyles.textStyle15.copyWith(color: AppColors.textPrimaryColor),
+              style: AppStyles.textStyle15.copyWith(fontWeight: FontWeight.normal,color: AppColors.textPrimaryColor),
               decoration: InputDecoration(
                 hintText: widget.hint,
                 hintStyle: AppStyles.textStyle14.copyWith(color: AppColors.textSecondaryColor,),

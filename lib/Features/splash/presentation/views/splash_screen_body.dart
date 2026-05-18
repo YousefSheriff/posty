@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:posty/Features/splash/presentation/views/widgets/app_name_widget.dart';
 import 'package:posty/Features/splash/presentation/views/widgets/logo_widget.dart';
-import 'package:posty/core/methods.dart';
+import 'package:posty/core/shared/methods.dart';
 
 class SplashScreenBody extends StatefulWidget
 {

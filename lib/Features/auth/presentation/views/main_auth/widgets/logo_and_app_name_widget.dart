@@ -13,7 +13,7 @@ class LogoAndAppNameWidget extends StatelessWidget {
         LogoWidget(),
         const SizedBox(height: 20),
          Text(
-          'Posty',
+          'P O S T Y',
           style:AppStyles.textStyle42,
         ),
         const SizedBox(height: 10),

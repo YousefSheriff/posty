@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:posty/core/utils/app_colors.dart';
 import 'package:posty/core/utils/app_styles.dart';
 
-class OrDivider extends StatelessWidget {
-  const OrDivider({super.key});
+class LoginOrDividerWidget extends StatelessWidget {
+  const LoginOrDividerWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
