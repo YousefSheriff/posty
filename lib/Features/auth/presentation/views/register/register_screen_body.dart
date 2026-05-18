@@ -14,33 +14,31 @@ class RegisterScreenBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
 
-    return  Expanded(
-      child: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-        child: Form(
-          key: formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              HeaderWidget(emoji: '👤', title: 'Ur personal info', subtitle: 'Tell us more about u'),
-              RegisterFieldsWidget(),
-              const SizedBox(height: 28),
-              PrimaryButton(label: 'Register',onTap: () {},),
-              const SizedBox(height: 24),
-              FooterWidget(firstText: 'Have an account?  ', secondText: 'Login now', onPressed: ()
-              {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (_)
-                      {
-                        return const LoginScreen();
-                      }),
-                );
-              },),
-            ],
-          ),
+    return  SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+      child: Form(
+        key: formKey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            HeaderWidget(emoji: '👤', title: 'Ur personal info', subtitle: 'Tell us more about u'),
+            RegisterFieldsWidget(),
+            const SizedBox(height: 28),
+            PrimaryButton(label: 'Register',onTap: () {},),
+            const SizedBox(height: 24),
+            FooterWidget(firstText: 'Have an account?  ', secondText: 'Login now', onPressed: ()
+            {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (_)
+                    {
+                      return const LoginScreen();
+                    }),
+              );
+            },),
+          ],
         ),
       ),
     );
