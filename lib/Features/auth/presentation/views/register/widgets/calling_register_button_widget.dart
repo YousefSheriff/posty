@@ -5,7 +5,7 @@ import 'package:posty/Features/auth/presentation/views/widgets/primary_button_wi
 
 class RegisterButtonWidget extends StatelessWidget {
   final RegisterStates state;
-  final VoidCallback onRegisterPressed;
+  final VoidCallback? onRegisterPressed;
 
   const RegisterButtonWidget({super.key, required this.state, required this.onRegisterPressed});
 
@@ -13,10 +13,21 @@ class RegisterButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ConditionalBuilder(
       condition: state is! RegisterLoadingState,
-      builder: (BuildContext context) {
+      builder: (BuildContext context)
+      {
+        if (onRegisterPressed == null)
+        {
+          return Opacity(
+            opacity: 0.5,
+            child: PrimaryButton(
+              label: 'Register',
+              onTap: () {},
+            ),
+          );
+        }
         return  PrimaryButton(
           label: 'Register',
-          onTap: onRegisterPressed,
+          onTap: onRegisterPressed!,
         );
       },
       fallback: (BuildContext context) {return const Center(child: CircularProgressIndicator());},
