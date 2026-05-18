@@ -6,7 +6,7 @@ import 'package:posty/Features/auth/presentation/manager/login_cubit/states.dart
 class LoginCubit extends Cubit<LoginStates> {
   LoginCubit() : super(LoginInitialState());
 
-  static LoginCubit get(context) => BlocProvider.of(context);
+  static LoginCubit get(BuildContext context) => BlocProvider.of(context);
 
 
   void userLogin({

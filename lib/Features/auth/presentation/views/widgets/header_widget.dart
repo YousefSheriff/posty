@@ -3,9 +3,9 @@ import 'package:posty/core/utils/app_colors.dart';
 import 'package:posty/core/utils/app_styles.dart';
 
 
-class LoginHeaderWidget extends StatelessWidget {
+class HeaderWidget extends StatelessWidget {
   final String emoji, title, subtitle;
-  const LoginHeaderWidget({super.key, required this.emoji, required this.title, required this.subtitle});
+  const HeaderWidget({super.key, required this.emoji, required this.title, required this.subtitle});
 
   @override
   Widget build(BuildContext context) {

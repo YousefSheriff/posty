@@ -5,9 +5,10 @@ import 'package:posty/Features/auth/presentation/manager/login_cubit/states.dart
 import 'package:posty/Features/auth/presentation/views/login/widgets/calling_button_widget.dart';
 import 'package:posty/Features/auth/presentation/views/login/widgets/calling_fields_widget.dart';
 import 'package:posty/Features/auth/presentation/views/login/widgets/divider_widget.dart';
-import 'package:posty/Features/auth/presentation/views/login/widgets/footer_widget.dart';
+import 'package:posty/Features/auth/presentation/views/register/register_screen.dart';
+import 'package:posty/Features/auth/presentation/views/widgets/footer_widget.dart';
 import 'package:posty/Features/auth/presentation/views/login/widgets/options_social_row_widget.dart';
-import 'package:posty/Features/auth/presentation/views/login/widgets/login_header_widget.dart';
+import 'package:posty/Features/auth/presentation/views/widgets/header_widget.dart';
 import 'package:posty/Features/auth/presentation/views/login/widgets/social_row_widget.dart';
 import 'package:posty/core/shared/methods.dart';
 
@@ -48,9 +49,9 @@ class LoginScreenBody extends StatelessWidget {
             child: Form(
               key: formKey,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  LoginHeaderWidget(emoji: '👋', title: 'Welcome Back!', subtitle: 'Login now to share ur posts',),
+                  HeaderWidget(emoji: '👋', title: 'Welcome Back!', subtitle: 'Login now to share ur posts',),
                   LoginFieldsWidget(emailController: emailController, passwordController: passwordController,cubit: cubit,),
                   const SizedBox(height: 12),
                   LoginOptionsRowWidget(cubit: cubit),
@@ -70,7 +71,16 @@ class LoginScreenBody extends StatelessWidget {
                   const SizedBox(height: 20),
                   const LoginSocialRowWidget(),
                   const SizedBox(height: 32),
-                  const LoginFooterWidget(),
+                  FooterWidget(firstText: 'Do not have an account?   ', secondText: 'Register now', onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_)
+                          {
+                            return const RegisterScreen();
+                          }),
+                    );
+                  },),
                   const SizedBox(height: 20),
                 ],
               ),
