@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:posty/Features/auth/presentation/views/login/widgets/form_field_widget.dart';
-import 'package:posty/Features/posts/presentation/views/create_post/body_text_field_widget.dart';
 import 'package:posty/Features/posts/presentation/views/create_post/widgets/create_post_header_widget.dart';
 
 class CreatePostBody extends StatelessWidget {
@@ -35,10 +34,17 @@ class CreatePostBody extends StatelessWidget {
                 }
                 return null;
 
+
                 },
             ),
             const SizedBox(height: 16),
-            BodyTextFieldWidget(controller: bodyController),
+            Field(
+              controller: bodyController,
+              label: 'Content',
+              hint: 'Write ur post content here...',
+              isTextArea: true,
+            )
+
           ],
         ),
       ),
