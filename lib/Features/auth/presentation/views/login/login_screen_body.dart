@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:posty/Features/auth/presentation/manager/login_cubit/cubit.dart';
 import 'package:posty/Features/auth/presentation/manager/login_cubit/states.dart';
 import 'package:posty/Features/auth/presentation/views/login/widgets/calling_login_button_widget.dart';
 import 'package:posty/Features/auth/presentation/views/login/widgets/calling_fields_widget.dart';
 import 'package:posty/Features/auth/presentation/views/login/widgets/divider_widget.dart';
-import 'package:posty/Features/auth/presentation/views/register/register_screen.dart';
 import 'package:posty/Features/auth/presentation/views/widgets/footer_widget.dart';
 import 'package:posty/Features/auth/presentation/views/login/widgets/options_social_row_widget.dart';
 import 'package:posty/Features/auth/presentation/views/widgets/header_widget.dart';
@@ -14,6 +14,7 @@ import 'package:posty/core/network/network_cubit/cubit.dart';
 import 'package:posty/core/network/network_cubit/states.dart';
 import 'package:posty/core/shared/methods.dart';
 import 'package:posty/core/utils/app_colors.dart';
+import 'package:posty/core/utils/app_routes.dart';
 
 class LoginScreenBody extends StatelessWidget {
   const LoginScreenBody({super.key});
@@ -32,9 +33,10 @@ class LoginScreenBody extends StatelessWidget {
       child: BlocConsumer<LoginCubit, LoginStates>(
         listener: (context, state)
         {
-          if (state is LoginSuccessState) {
+          if (state is LoginSuccessState)
+          {
             showToast(message: "Login Successfully", state: ToastStates.SUCCESS);
-            // navigateAndFinish(context, MainScaffold());
+            GoRouter.of(context).go(AppRoutes.homePosts);
           } else if (state is LoginErrorState) {
             showToast(message: "Plz enter right data", state: ToastStates.ERROR);
           }
@@ -106,13 +108,7 @@ class LoginScreenBody extends StatelessWidget {
                         firstText: 'Do not have an account?   ',
                         secondText: 'Register now',
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute
-                              (
-                              builder: (_) => const RegisterScreen(),
-                            ),
-                          );
+                          GoRouter.of(context).pushReplacement(AppRoutes.register);
                         },
                       ),
                       const SizedBox(height: 20),

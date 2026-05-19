@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:posty/Features/posts/data/models/post_model.dart';
 import 'package:posty/Features/posts/presentation/manager/app_cubit/cubit.dart';
 import 'package:posty/Features/posts/presentation/manager/app_cubit/states.dart';
-import 'package:posty/Features/posts/presentation/views/post_details/post_details_screen.dart';
 import 'package:posty/core/utils/app_colors.dart';
+import 'package:posty/core/utils/app_routes.dart';
 import 'package:posty/core/utils/app_styles.dart';
 
 class PostCardWidget extends StatelessWidget {
@@ -23,10 +24,7 @@ class PostCardWidget extends StatelessWidget {
           {
             PostsCubit.get(context).getPostDetails(post.id!);
 
-            Navigator.push(context, MaterialPageRoute(builder: (context)
-            {
-              return PostDetailsScreen(postId:post.id.toString());
-            },),);
+            GoRouter.of(context).push(AppRoutes.postDetail, extra: post.id.toString(),);
           },
           child: Container(
             padding: const EdgeInsets.all(16),

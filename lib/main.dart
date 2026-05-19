@@ -1,12 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:posty/Features/posts/presentation/manager/app_cubit/cubit.dart';
-import 'package:posty/Features/posts/presentation/views/home_posts/posts_screen.dart';
 import 'package:posty/core/network/network_cubit/cubit.dart';
 import 'package:posty/core/network/remote/dio_helper.dart';
 import 'package:posty/core/shared/bloc_observer.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:posty/core/utils/app_routes.dart';
 
 
 void main()async
@@ -38,11 +38,12 @@ class MyApp extends StatelessWidget {
             }),
 
       ],
-      child: MaterialApp(
+      child: MaterialApp.router(
         title: 'P O S T Y',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple),),
-        home: PostsScreen(),
+        routerConfig:AppRoutes.routers,
+        // home: PostsScreen(),
       ),
     );
   }

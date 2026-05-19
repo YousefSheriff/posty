@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:posty/Features/auth/presentation/manager/register_cubit/cubit.dart';
 import 'package:posty/Features/auth/presentation/manager/register_cubit/states.dart';
-import 'package:posty/Features/auth/presentation/views/login/login_screen.dart';
 import 'package:posty/Features/auth/presentation/views/register/widgets/calling_register_button_widget.dart';
 import 'package:posty/Features/auth/presentation/views/widgets/footer_widget.dart';
 import 'package:posty/Features/auth/presentation/views/widgets/header_widget.dart';
@@ -11,6 +11,7 @@ import 'package:posty/core/network/network_cubit/cubit.dart';
 import 'package:posty/core/network/network_cubit/states.dart';
 import 'package:posty/core/shared/methods.dart';
 import 'package:posty/core/utils/app_colors.dart';
+import 'package:posty/core/utils/app_routes.dart';
 
 
 
@@ -36,7 +37,8 @@ class RegisterScreenBody extends StatelessWidget {
           {
             print("sucsesssssssssssssssssssssssssssssssss");
             showToast(message: "Register Successfully", state: ToastStates.SUCCESS);
-            // navigateAndFinish(context,  MainScaffold(),);
+            GoRouter.of(context).go(AppRoutes.homePosts);
+
           }
           else if(state is RegisterErrorState)
           {
@@ -93,14 +95,8 @@ class RegisterScreenBody extends StatelessWidget {
                       const SizedBox(height: 24),
                       FooterWidget(firstText: 'Have an account?  ', secondText: 'Login now', onPressed: ()
                       {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (_)
-                              {
-                                return const LoginScreen();
-                              }),
-                        );
+                        GoRouter.of(context).pushReplacement(AppRoutes.login);
+
                       },
                       ),
                     ],
@@ -114,3 +110,4 @@ class RegisterScreenBody extends StatelessWidget {
     );
   }
 }
+//

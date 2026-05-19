@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:posty/Features/auth/presentation/views/login/login_screen.dart';
+import 'package:go_router/go_router.dart';
 import 'package:posty/Features/auth/presentation/views/main_auth/widgets/logo_and_app_name_widget.dart';
 import 'package:posty/Features/auth/presentation/views/widgets/outline_button_widget.dart';
-import 'package:posty/Features/auth/presentation/views/register/register_screen.dart';
 import 'package:posty/Features/auth/presentation/views/widgets/primary_button_widget.dart';
+import 'package:posty/core/utils/app_routes.dart';
 
 
 class MainAuthScreenBody extends StatelessWidget {
@@ -22,16 +22,9 @@ class MainAuthScreenBody extends StatelessWidget {
 
             PrimaryButton(
               label: 'Login',
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (_)
-                      {
-                        return const LoginScreen();
-                      }),
-                );
-
+              onTap: ()
+              {
+                GoRouter.of(context).push(AppRoutes.login);
               },
             ),
             const SizedBox(height: 14),
@@ -39,15 +32,7 @@ class MainAuthScreenBody extends StatelessWidget {
               label: 'Register',
               onTap: ()
               {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (_)
-                      {
-                        return const RegisterScreen();
-                      }),
-                );
-
+                GoRouter.of(context).push(AppRoutes.register);
               },
             ),
             const Spacer(),

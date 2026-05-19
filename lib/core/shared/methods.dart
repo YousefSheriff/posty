@@ -1,24 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:posty/Features/auth/presentation/views/main_auth/auth_screen.dart';
+import 'package:go_router/go_router.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:posty/core/utils/app_routes.dart';
 
-void navigationToAuthScreen (BuildContext context)
+void navigateToAuthScreen (BuildContext context)
 {
   Future.delayed(const Duration(milliseconds: 5800), ()
   {
-    Navigator.of(context).pushReplacement(
-      PageRouteBuilder(
-        pageBuilder: (_, _, _)
-        {
-          return const AuthScreen();
-        },
-        transitionsBuilder: (_, anim, _, child) => FadeTransition(
-          opacity: CurvedAnimation(parent: anim, curve: Curves.easeIn),
-          child: child,
-        ),
-        transitionDuration: const Duration(milliseconds: 1000),
-      ),
-    );
+    GoRouter.of(context).go(AppRoutes.auth);
   });
 }
 
@@ -72,7 +61,7 @@ SnackBar showSnackBar(String message,Color color,bool withIcon,bool withDuration
         if (withIcon)
           Icon(Icons.wifi_off, color: Colors.white, size: 18),
         if (withIcon)
-        SizedBox(width: 10),
+          SizedBox(width: 10),
         Text(
           message,
           style: TextStyle(color: Colors.white),

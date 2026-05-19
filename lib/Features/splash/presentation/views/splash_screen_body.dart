@@ -19,7 +19,7 @@ class _SplashScreenBodyState extends State<SplashScreenBody> with SingleTickerPr
   void initState() {
     super.initState();
     initSplashAnimation();
-    navigationToAuthScreen(context);
+    navigateToAuthScreen(context);
   }
 
   @override

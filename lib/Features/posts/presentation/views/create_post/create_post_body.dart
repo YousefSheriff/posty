@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:posty/Features/auth/presentation/views/login/widgets/form_field_widget.dart';
 import 'package:posty/Features/auth/presentation/views/widgets/primary_button_widget.dart';
@@ -30,7 +31,7 @@ class CreatePostBody extends StatelessWidget {
             if (state is CreatePostSuccessState)
             {
               ScaffoldMessenger.of(context).showSnackBar(showSnackBar('Post created successfully!',AppColors.greenColor,false,false),);
-              Navigator.pop(context);
+              GoRouter.of(context).pop();
             }
             if (state is CreatePostErrorState)
             {

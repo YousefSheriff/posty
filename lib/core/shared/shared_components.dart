@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:posty/Features/posts/presentation/views/create_post/create_post_screen.dart';
+import 'package:go_router/go_router.dart';
 import 'package:posty/core/utils/app_colors.dart';
+import 'package:posty/core/utils/app_routes.dart';
 import 'package:posty/core/utils/app_styles.dart';
 PreferredSizeWidget customAppBar(BuildContext context, String title, bool isHomePosts,bool isOnline)
 
@@ -11,7 +12,7 @@ PreferredSizeWidget customAppBar(BuildContext context, String title, bool isHome
     leading: !isHomePosts? GestureDetector(
       onTap: ()
       {
-          Navigator.pop(context);
+        GoRouter.of(context).pop();
       },
       child: Container(
         margin: const EdgeInsets.all(10),
@@ -31,7 +32,8 @@ PreferredSizeWidget customAppBar(BuildContext context, String title, bool isHome
         {
           if(isOnline)
           {
-            Navigator.push(context, MaterialPageRoute(builder: (_) => const CreatePostScreen()),);
+            GoRouter.of(context).push(AppRoutes.createPost);
+
           }
         }
       },
