@@ -34,7 +34,7 @@ class PostsScreen extends StatelessWidget
         return Scaffold(
           backgroundColor: AppColors.backgroundColor,
           appBar: customAppBar(context, 'Posts',true,isOnline),
-          body: PostsListBody(),
+          body: PostsListBody(isOnline: isOnline,),
         );
       },
     );

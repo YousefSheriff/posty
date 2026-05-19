@@ -9,7 +9,9 @@ import 'package:posty/Features/posts/presentation/views/home_posts/widgets/searc
 import 'package:posty/core/utils/app_colors.dart';
 
 class PostsListBody extends StatelessWidget {
-  const PostsListBody({super.key});
+  final bool isOnline;
+  const PostsListBody({super.key, required this.isOnline});
+
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +34,16 @@ class PostsListBody extends StatelessWidget {
         return Column(
           children:
           [
-            SearchFieldWidget(onChanged: (value) {},),
-            Expanded(child: cubit.postsResult.isEmpty ? const EmptyPostsWidget() : postsList(cubit),),
+            SearchFieldWidget(
+              onChanged: (value)
+              {
+                if(isOnline)
+                {
+                  cubit.searchPosts(value);
+                }
+              },
+            ),
+            Expanded(child: cubit.searchPostsResult.isEmpty ? const EmptyPostsWidget() : postsList(cubit),),
           ],
         );
       },
@@ -45,14 +55,14 @@ class PostsListBody extends StatelessWidget {
     return ListView.separated(
       physics: const BouncingScrollPhysics(),
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-      itemCount: cubit.postsResult.length,
+      itemCount: cubit.searchPostsResult.length,
       separatorBuilder: (context, index)
       {
         return const SizedBox(height: 12);
       },
       itemBuilder: (context, index)
       {
-        return PostCardWidget(post: cubit.postsResult[index]);
+        return PostCardWidget(post: cubit.searchPostsResult[index]);
       },
     );
   }

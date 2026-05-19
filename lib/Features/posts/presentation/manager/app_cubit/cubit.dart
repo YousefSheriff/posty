@@ -13,9 +13,8 @@ class PostsCubit extends Cubit<PostsStates> {
     return BlocProvider.of(context);
   }
 
-
   List<PostModel> posts = [];
-  List<PostModel> postsResult = [];
+  List<PostModel> searchPostsResult = [];
 
   void getPosts()
   {
@@ -27,7 +26,7 @@ class PostsCubit extends Cubit<PostsStates> {
       {
         return PostModel.fromJson(item);
       }).toList();
-      postsResult = posts;
+      searchPostsResult = posts;
 
       emit(GetPostsSuccessState());
     }).catchError((error) {
@@ -53,9 +52,6 @@ class PostsCubit extends Cubit<PostsStates> {
     });
   }
 
-
-  PostModel? createdPost;
-
   void createPost({
     required String title,
     required String body,
@@ -73,10 +69,9 @@ class PostsCubit extends Cubit<PostsStates> {
     ).then((value)
 
     {
-      createdPost = PostModel.fromJson(value.data);
-      print('Created Post ID: ${createdPost!.id}');
       emit(CreatePostSuccessState());
-      getPosts();
+      Future.delayed(const Duration(seconds: 2), () {getPosts();});
+
     }).catchError((error)
     {
       print(error.toString());
@@ -84,5 +79,15 @@ class PostsCubit extends Cubit<PostsStates> {
     });
   }
 
+
+
+  void searchPosts(String query)
+  {
+    searchPostsResult = posts.where((post)
+    {
+      return post.title!.toLowerCase().contains(query.toLowerCase()) || post.body!.toLowerCase().contains(query.toLowerCase());
+    }).toList();
+    emit(PostsSearchState());
+  }
 
 }

@@ -20,3 +20,5 @@ class CreatePostLoadingState extends PostsStates {}
 class CreatePostSuccessState extends PostsStates {}
 
 class CreatePostErrorState extends PostsStates {}
+
+class PostsSearchState extends PostsStates {}
