@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:posty/Features/posts/presentation/views/home_posts/posts_screen.dart';
+import 'package:posty/core/app_cubit/cubit.dart';
 import 'package:posty/core/network/network_cubit/cubit.dart';
 import 'package:posty/core/shared/bloc_observer.dart';
 import 'package:bloc/bloc.dart';
@@ -28,6 +29,11 @@ class MyApp extends StatelessWidget {
         {
           return ConnectivityCubit();
         }),
+        BlocProvider(
+            create: (context)
+            {
+              return PostyCubit();
+            }),
 
       ],
       child: MaterialApp(

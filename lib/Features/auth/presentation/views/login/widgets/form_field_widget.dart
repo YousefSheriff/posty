@@ -35,9 +35,9 @@ class _FieldState extends State<Field> {
         Text(widget.label, style:  AppStyles.textStyle13.copyWith(color: AppColors.textPrimaryColor, fontWeight: FontWeight.w500)),
         const SizedBox(height: 8),
         Focus(
-          onFocusChange: (v)
+          onFocusChange: (value)
           {
-            setState(() => isFocused = v);
+            setState(() => isFocused = value);
           },
           child: Container(
             decoration: BoxDecoration(
