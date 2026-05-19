@@ -27,7 +27,6 @@ class PostsListBody extends StatelessWidget {
         {
           return ErrorStateWidget(onRetry: () {cubit.getPosts();},);
         }
-
         return Column(
           children:
           [

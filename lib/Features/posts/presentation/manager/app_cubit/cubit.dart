@@ -17,7 +17,8 @@ class PostsCubit extends Cubit<PostsStates> {
   List<PostModel> posts = [];
   List<PostModel> postsResult = [];
 
-  void getPosts() {
+  void getPosts()
+  {
     emit(GetPostsLoadingState());
 
     DioHelper.getData(url: POSTS).then((value)
@@ -34,5 +35,23 @@ class PostsCubit extends Cubit<PostsStates> {
       emit(GetPostsErrorState());
     });
   }
+
+
+  PostModel? postDetails;
+
+  void getPostDetails(String postId)
+  {
+    emit(GetPostDetailsLoadingState());
+
+    DioHelper.getData(url: POST_DETAILS + postId).then((value)
+    {
+      postDetails = PostModel.fromJson(value.data);
+      emit(GetPostDetailsSuccessState());
+    }).catchError((error) {
+      print(error.toString());
+      emit(GetPostDetailsErrorState());
+    });
+  }
+
 
 }
