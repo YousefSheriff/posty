@@ -9,12 +9,12 @@ class PostCardWidget extends StatelessWidget {
   const PostCardWidget({super.key, required this.post});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)
+  {
     return GestureDetector(
-      onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) => PostDetailsScreen(post: post)));
+      onTap: ()
+      {
+        Navigator.push(context, MaterialPageRoute(builder: (_) => PostDetailsScreen(post: post)));
       },
       child: Container(
         padding: const EdgeInsets.all(16),

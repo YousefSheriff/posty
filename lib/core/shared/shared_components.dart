@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:posty/Features/posts/presentation/views/create_post/create_post_screen.dart';
 import 'package:posty/core/utils/app_colors.dart';
 import 'package:posty/core/utils/app_styles.dart';
-PreferredSizeWidget customAppBar(BuildContext context, String title, bool isHomePosts)
+PreferredSizeWidget customAppBar(BuildContext context, String title, bool isHomePosts,bool isOnline)
 
 {
   return AppBar(
@@ -11,8 +11,7 @@ PreferredSizeWidget customAppBar(BuildContext context, String title, bool isHome
     leading: !isHomePosts? GestureDetector(
       onTap: ()
       {
-        Navigator.pop(context);
-
+          Navigator.pop(context);
       },
       child: Container(
         margin: const EdgeInsets.all(10),
@@ -30,17 +29,17 @@ PreferredSizeWidget customAppBar(BuildContext context, String title, bool isHome
       {
         if(isHomePosts)
         {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) => const CreatePostScreen()),
-          );
+          if(isOnline)
+          {
+            Navigator.push(context, MaterialPageRoute(builder: (_) => const CreatePostScreen()),);
+          }
         }
       },
       child: Container(
         margin: const EdgeInsets.only(right: 16),
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
-          color: AppColors.appPrimaryColor,
+          color: isOnline?AppColors.appPrimaryColor:AppColors.appPrimaryColor.withValues(alpha: 0.5),
           borderRadius: BorderRadius.circular(10),
         ),
         child: const Icon(Icons.add_rounded, color: Colors.white, size: 20),

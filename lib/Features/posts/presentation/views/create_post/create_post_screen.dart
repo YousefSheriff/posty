@@ -10,7 +10,7 @@ class CreatePostScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      appBar: customAppBar(context, 'New Post',false),
+      appBar: customAppBar(context, 'New Post',false,true),
       body: CreatePostBody(),
     );
   }

@@ -1,10 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:posty/Features/posts/presentation/manager/app_cubit/cubit.dart';
 import 'package:posty/Features/posts/presentation/views/home_posts/posts_screen.dart';
-// import 'package:posty/Features/newfiles/core/network/dio_helper.dart';
-// import 'package:posty/Features/newfiles/presentation/manager/posts_cubit.dart';
-// import 'package:posty/Features/newfiles/presentation/views/home_posts/posts_screen.dart';
 import 'package:posty/core/network/network_cubit/cubit.dart';
+import 'package:posty/core/network/remote/dio_helper.dart';
 import 'package:posty/core/shared/bloc_observer.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,7 +14,7 @@ void main()async
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   Bloc.observer = MyBlocObserver();
-  // DioHelper.init();
+  DioHelper.init();
   runApp(const MyApp());
 }
 
@@ -32,18 +31,18 @@ class MyApp extends StatelessWidget {
         {
           return ConnectivityCubit();
         }),
-        // BlocProvider(
-        //     create: (context)
-        //     {
-        //       return PostsCubit()..getPosts();
-        //     }),
+        BlocProvider(
+            create: (context)
+            {
+              return PostsCubit()..getPosts();
+            }),
 
       ],
       child: MaterialApp(
         title: 'P O S T Y',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple),),
-        home: PostyScreen(),
+        home: PostsScreen(),
       ),
     );
   }
