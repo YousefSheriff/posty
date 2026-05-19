@@ -13,6 +13,7 @@ import 'package:posty/Features/auth/presentation/views/login/widgets/social_row_
 import 'package:posty/core/network/network_cubit/cubit.dart';
 import 'package:posty/core/network/network_cubit/states.dart';
 import 'package:posty/core/shared/methods.dart';
+import 'package:posty/core/utils/app_colors.dart';
 
 class LoginScreenBody extends StatelessWidget {
   const LoginScreenBody({super.key});
@@ -50,7 +51,7 @@ class LoginScreenBody extends StatelessWidget {
                 {
                   final messenger = ScaffoldMessenger.of(context);
                   messenger.hideCurrentSnackBar();
-                  messenger.showSnackBar(showSnackBar(),);
+                  messenger.showSnackBar(showSnackBar('No internet connection',AppColors.wifiError,true,true),);
                 }
                 else if (state is ConnectivityOnlineState)
                 {

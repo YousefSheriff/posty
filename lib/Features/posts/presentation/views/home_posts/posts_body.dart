@@ -15,8 +15,10 @@ class PostsListBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<PostsCubit, PostsStates>(
       listener: (context, state) {},
-      builder: (context, state) {
+      builder: (context, state)
+      {
         final cubit = PostsCubit.get(context);
+
 
         if (state is GetPostsLoadingState)
         {

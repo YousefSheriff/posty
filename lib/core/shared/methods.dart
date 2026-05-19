@@ -62,17 +62,19 @@ void showToast({
 
 
 
-SnackBar showSnackBar()
+SnackBar showSnackBar(String message,Color color,bool withIcon,bool withDuration)
 {
   return SnackBar(
-    duration: const Duration(days: 1),
-    backgroundColor: Colors.red.shade700,
-    content: const Row(
+    duration: withDuration ? Duration(days: 1) : Duration(seconds: 3),
+    backgroundColor: color,
+    content: Row(
       children: [
-        Icon(Icons.wifi_off, color: Colors.white, size: 18),
+        if (withIcon)
+          Icon(Icons.wifi_off, color: Colors.white, size: 18),
+        if (withIcon)
         SizedBox(width: 10),
         Text(
-          'No internet connection',
+          message,
           style: TextStyle(color: Colors.white),
         ),
       ],

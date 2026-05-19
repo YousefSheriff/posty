@@ -10,6 +10,7 @@ import 'package:posty/Features/auth/presentation/views/register/widgets/register
 import 'package:posty/core/network/network_cubit/cubit.dart';
 import 'package:posty/core/network/network_cubit/states.dart';
 import 'package:posty/core/shared/methods.dart';
+import 'package:posty/core/utils/app_colors.dart';
 
 
 
@@ -41,8 +42,8 @@ class RegisterScreenBody extends StatelessWidget {
           {
             showToast(message: "Failed to create ur account", state: ToastStates.ERROR);
           }
-          
-          
+
+
         },
         builder: (BuildContext context, RegisterStates state)
         {
@@ -54,7 +55,7 @@ class RegisterScreenBody extends StatelessWidget {
               {
                 final messenger = ScaffoldMessenger.of(context);
                 messenger.hideCurrentSnackBar();
-                messenger.showSnackBar(showSnackBar(),);
+                messenger.showSnackBar(showSnackBar('No internet connection',AppColors.wifiError,true,true),);
               }
               else if (state is ConnectivityOnlineState)
               {
@@ -79,15 +80,15 @@ class RegisterScreenBody extends StatelessWidget {
                       RegisterFieldsWidget(nameController: nameController, emailController: emailController, phoneController: phoneController, passwordController: passwordController,cubit: cubit,),
                       const SizedBox(height: 28),
                       RegisterButtonWidget(
-                          state: state,
-                          onRegisterPressed: isOnline? ()
+                        state: state,
+                        onRegisterPressed: isOnline? ()
+                        {
+                          if(formKey.currentState!.validate())
                           {
-                            if(formKey.currentState!.validate())
-                            {
-                              cubit.userRegister(name: nameController.text, email: emailController.text, phone: phoneController.text, password: passwordController.text);
-                            }
+                            cubit.userRegister(name: nameController.text, email: emailController.text, phone: phoneController.text, password: passwordController.text);
+                          }
 
-                          }:null,
+                        }:null,
                       ),
                       const SizedBox(height: 24),
                       FooterWidget(firstText: 'Have an account?  ', secondText: 'Login now', onPressed: ()

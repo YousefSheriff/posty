@@ -20,7 +20,7 @@ class PostsScreen extends StatelessWidget
         {
           final messenger = ScaffoldMessenger.of(context);
           messenger.hideCurrentSnackBar();
-          messenger.showSnackBar(showSnackBar(),);
+          messenger.showSnackBar(showSnackBar('No internet connection',AppColors.wifiError,true,true),);
         }
         else if (networkState is ConnectivityOnlineState)
         {

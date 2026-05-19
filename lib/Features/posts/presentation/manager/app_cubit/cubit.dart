@@ -6,7 +6,7 @@ import 'package:posty/core/network/remote/dio_helper.dart';
 import 'package:posty/core/network/remote/end_points.dart';
 
 class PostsCubit extends Cubit<PostsStates> {
-  PostsCubit() : super(PostyInitialState());
+  PostsCubit() : super(PostsInitialState());
 
   static PostsCubit get(BuildContext context)
   {
@@ -50,6 +50,37 @@ class PostsCubit extends Cubit<PostsStates> {
     }).catchError((error) {
       print(error.toString());
       emit(GetPostDetailsErrorState());
+    });
+  }
+
+
+  PostModel? createdPost;
+
+  void createPost({
+    required String title,
+    required String body,
+    int userId = 1,
+  }) {
+    emit(CreatePostLoadingState());
+
+    DioHelper.postData(
+      url: CREATE_POST,
+      data: {
+        'title': title,
+        'body': body,
+        'userId': userId,
+      },
+    ).then((value)
+
+    {
+      createdPost = PostModel.fromJson(value.data);
+      print('Created Post ID: ${createdPost!.id}');
+      emit(CreatePostSuccessState());
+      getPosts();
+    }).catchError((error)
+    {
+      print(error.toString());
+      emit(CreatePostErrorState());
     });
   }
 

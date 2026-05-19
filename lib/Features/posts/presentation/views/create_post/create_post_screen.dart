@@ -3,9 +3,9 @@ import 'package:posty/Features/posts/presentation/views/create_post/create_post_
 import 'package:posty/core/shared/shared_components.dart';
 import 'package:posty/core/utils/app_colors.dart';
 
-class CreatePostScreen extends StatelessWidget {
+class CreatePostScreen extends StatelessWidget
+{
   const CreatePostScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
