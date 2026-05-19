@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:posty/Features/posts/data/models/post_model.dart';
+import 'package:posty/Features/posts/presentation/views/post_details/post_details_screen.dart';
 import 'package:posty/core/utils/app_colors.dart';
 import 'package:posty/core/utils/app_styles.dart';
 
@@ -10,7 +11,11 @@ class PostCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => PostDetailsScreen(post: post)));
+      },
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
