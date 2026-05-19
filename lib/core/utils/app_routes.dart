@@ -21,7 +21,9 @@ abstract class AppRoutes {
       [
         GoRoute(
           path: splash,
-          builder:(context , state)=> const SplashScreen(),
+          builder:(context , state) {
+            return const SplashScreen();
+          },
         ),
         GoRoute(
           path: auth,

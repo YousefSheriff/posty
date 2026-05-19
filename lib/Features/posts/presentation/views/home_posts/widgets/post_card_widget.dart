@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:posty/Features/posts/data/models/post_model.dart';
 import 'package:posty/Features/posts/presentation/manager/app_cubit/cubit.dart';
 import 'package:posty/Features/posts/presentation/manager/app_cubit/states.dart';
+import 'package:posty/core/theme/theme_cubit.dart';
+import 'package:posty/core/theme/theme_states.dart';
 import 'package:posty/core/utils/app_colors.dart';
 import 'package:posty/core/utils/app_routes.dart';
 import 'package:posty/core/utils/app_styles.dart';
@@ -13,58 +15,107 @@ class PostCardWidget extends StatelessWidget {
   const PostCardWidget({super.key, required this.post});
 
   @override
-  Widget build(BuildContext context)
-  {
-    return BlocConsumer<PostsCubit,PostsStates>(
-      listener: (BuildContext context, PostsStates state) {  },
-      builder: (BuildContext context, PostsStates state)
-      {
-        return GestureDetector(
-          onTap: ()
-          {
-            PostsCubit.get(context).getPostDetails(post.id!);
+  Widget build(BuildContext context) {
+    return BlocConsumer<PostsCubit, PostsStates>(
+      listener: (BuildContext context, PostsStates state) {},
+      builder: (BuildContext context, PostsStates state) {
+        return BlocBuilder<ThemeCubit, ThemeStates>(
+          builder: (context, themeState) {
+            final isDark = ThemeCubit.get(context).isDark;
 
-            GoRouter.of(context).push(AppRoutes.postDetail, extra: post.id.toString(),);
-          },
-          child: Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: AppColors.cardColor,
-              borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: AppColors.borderColor),
-              boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.04), blurRadius: 8)],
-            ),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  width: 42, height: 42,
-                  decoration: BoxDecoration(color: AppColors.appPrimaryLightColor, borderRadius: BorderRadius.circular(12)),
-                  alignment: Alignment.center,
-                  child: Text('#${post.id}', style: AppStyles.textStyle12.copyWith(color: AppColors.appPrimaryColor, fontWeight: FontWeight.bold)),
+            return GestureDetector(
+              onTap: () {
+                PostsCubit.get(context).getPostDetails(post.id!);
+                GoRouter.of(context).push(AppRoutes.postDetail, extra: post.id.toString());
+              },
+              child: Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: AppColors.card(isDark),
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: AppColors.border(isDark)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: isDark ? 0.2 : 0.04),
+                      blurRadius: 8,
+                    ),
+                  ],
                 ),
-                const SizedBox(width: 14),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    // ── ID Badge ──────────────────────────────────────────────
+                    Container(
+                      width: 42,
+                      height: 42,
+                      decoration: BoxDecoration(
+                        color: isDark
+                            ? AppColors.appPrimaryColor.withValues(alpha: 0.15)
+                            : AppColors.appPrimaryLightColor,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      alignment: Alignment.center,
+                      child: Text(
+                        '#${post.id}',
+                        style: AppStyles.textStyle12.copyWith(
+                          color: AppColors.appPrimaryColor,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 14),
+
+                    // ── Title + Date + Body ───────────────────────────────────
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Expanded(child: Text(post.title.toString(), style: AppStyles.textStyle13, maxLines: 2, overflow: TextOverflow.ellipsis)),
-                          SizedBox(width: 10,),
-                          Text(post.dateTime.toString(), style: AppStyles.textStyle10,),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  post.title.toString(),
+                                  style: AppStyles.textStyle13.copyWith(
+                                    color: AppColors.textPrimary(isDark),
+                                  ),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                              const SizedBox(width: 10),
+                              Text(
+                                post.dateTime.toString(),
+                                style: AppStyles.textStyle10.copyWith(
+                                  color: AppColors.textSecondary(isDark),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 6),
+                          Text(
+                            post.body.toString(),
+                            style: AppStyles.textStyle12.copyWith(
+                              color: AppColors.textSecondary(isDark),
+                            ),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ],
                       ),
-                      const SizedBox(height: 6),
-                      Text(post.body.toString(), style: AppStyles.textStyle12, maxLines: 2, overflow: TextOverflow.ellipsis),
-                    ],
-                  ),
+                    ),
+                    const SizedBox(width: 8),
+
+                    // ── Arrow ─────────────────────────────────────────────────
+                    Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      size: 14,
+                      color: AppColors.textSecondary(isDark),
+                    ),
+                  ],
                 ),
-                const SizedBox(width: 8),
-                const Icon(Icons.arrow_forward_ios_rounded, size: 14, color: AppColors.textSecondaryColor),
-              ],
-            ),
-          ),
+              ),
+            );
+          },
         );
       },
     );

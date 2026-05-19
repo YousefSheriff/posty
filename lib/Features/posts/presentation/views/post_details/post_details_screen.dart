@@ -6,6 +6,8 @@ import 'package:posty/Features/posts/presentation/manager/app_cubit/states.dart'
 import 'package:posty/Features/posts/presentation/views/home_posts/widgets/error_state_widget.dart';
 import 'package:posty/Features/posts/presentation/views/post_details/post_details_body.dart';
 import 'package:posty/core/shared/shared_components.dart';
+import 'package:posty/core/theme/theme_cubit.dart';
+import 'package:posty/core/theme/theme_states.dart';
 import 'package:posty/core/utils/app_colors.dart';
 
 class PostDetailsScreen extends StatelessWidget {
@@ -14,33 +16,33 @@ class PostDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<PostsCubit, PostsStates>(
-      listener: (context, state) {},
-      builder: (context, state) {
-        final cubit = PostsCubit.get(context);
-
-        return Scaffold(
-          backgroundColor: AppColors.backgroundColor,
-          appBar: customAppBar(context, 'Post Details', false, true),
-          body: ConditionalBuilder(
-            condition: state is! GetPostDetailsLoadingState,
-            builder: (context)
-            {
-              if (state is GetPostDetailsErrorState)
-              {
-                return ErrorStateWidget(onRetry: () {cubit.getPostDetails(postId);},);
-              }
-              else
-              {
-                return PostDetailsBody(post: cubit.postDetails!,);
-              }
-            },
-            fallback: (context)
-            {
-              return const Center(child: CircularProgressIndicator(color: AppColors.appPrimaryColor,),
+    return BlocBuilder<ThemeCubit, ThemeStates>(
+      builder: (context, themeState) {
+        final isDark = ThemeCubit.get(context).isDark;
+        return BlocConsumer<PostsCubit, PostsStates>(
+          listener: (context, state) {},
+          builder: (context, state) {
+            final cubit = PostsCubit.get(context);
+            return Scaffold(
+              backgroundColor: AppColors.backGround(isDark),
+              appBar: customAppBar(context, 'Post Details', false, true, isDark),
+              body: ConditionalBuilder(
+                condition: state is! GetPostDetailsLoadingState,
+                builder: (context) {
+                  if (state is GetPostDetailsErrorState) {
+                    return ErrorStateWidget(onRetry: () {
+                      cubit.getPostDetails(postId);
+                    });
+                  }
+                  return PostDetailsBody(post: cubit.postDetails!);
+                },
+                fallback: (context)
+                {
+                  return const Center(child: CircularProgressIndicator(color: AppColors.appPrimaryColor),);
+                },
+              ),
             );
-            },
-          ),
+          },
         );
       },
     );
