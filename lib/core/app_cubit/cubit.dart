@@ -10,12 +10,14 @@ class PostyCubit extends Cubit<PostyStates> {
     return BlocProvider.of(context);
   }
 
-  bool isFocused = false;
+  // bool isFocused = false;
+  //
+  // void changeFocused(value)
+  // {
+  //   isFocused = value;
+  //   emit(PostyChangeFocusedState());
+  // }
 
-  void changeFocused(value)
-  {
-    isFocused = value;
-    emit(PostyChangeFocusedState());
-  }
+
 
 }
