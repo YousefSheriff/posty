@@ -12,7 +12,7 @@ class PostDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      appBar: customAppBar(context, 'Post Details'),
+      appBar: customAppBar(context, 'Post Details',false),
       body: PostDetailsBody(post: post),
     );
   }

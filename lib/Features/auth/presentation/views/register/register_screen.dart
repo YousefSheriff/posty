@@ -12,7 +12,7 @@ class RegisterScreen extends StatelessWidget
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      appBar: customAppBar(context, 'Register'),
+      appBar: customAppBar(context, 'Register',false),
       body: const RegisterScreenBody(),
     );
   }
