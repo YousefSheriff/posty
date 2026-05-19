@@ -1,5 +1,5 @@
 class PostModel {
-  final int?    id;
+  final String? id;     // 👈 String مش int
   final int?    userId;
   final String? title;
   final String? body;
@@ -12,7 +12,8 @@ class PostModel {
         title  = json['title'],
         body   = json['body'];
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMap() =>
+      {
         'id':     id,
         'userId': userId,
         'title':  title,

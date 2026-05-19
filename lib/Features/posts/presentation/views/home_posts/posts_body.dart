@@ -25,7 +25,7 @@ class PostsListBody extends StatelessWidget {
     return ListView.separated(
       physics: const BouncingScrollPhysics(),
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-      itemCount: 20,
+      itemCount: posts.length,
       separatorBuilder: (context, index)
       {
         return const SizedBox(height: 12);
