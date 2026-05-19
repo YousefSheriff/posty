@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
         title: 'P O S T Y',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple),),
-        home: PostsScreen(),
+        home: PostyScreen(),
       ),
     );
   }

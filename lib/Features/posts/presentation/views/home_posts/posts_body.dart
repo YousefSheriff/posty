@@ -15,7 +15,6 @@ class PostsListBody extends StatelessWidget {
     return Column(
       children: [
         SearchFieldWidget(onChanged: (value){}),
-
         Expanded(child: posts.isEmpty ? const EmptyPostsWidget() : postsList(posts),),
       ],
     );

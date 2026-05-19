@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:posty/Features/auth/presentation/views/login/widgets/form_field_widget.dart';
+import 'package:posty/Features/auth/presentation/views/widgets/primary_button_widget.dart';
 import 'package:posty/Features/posts/presentation/views/create_post/widgets/create_post_header_widget.dart';
 
 class CreatePostBody extends StatelessWidget {
@@ -33,8 +34,6 @@ class CreatePostBody extends StatelessWidget {
                   return 'enter a title';
                 }
                 return null;
-
-
                 },
             ),
             const SizedBox(height: 16),
@@ -43,8 +42,16 @@ class CreatePostBody extends StatelessWidget {
               label: 'Content',
               hint: 'Write ur post content here...',
               isTextArea: true,
-            )
-
+            ),
+            const SizedBox(height: 32),
+            PrimaryButton(
+              label: 'Publish Post',
+              onTap: () {
+                if (formKey.currentState!.validate())
+                {}
+              },
+            ),
+            const SizedBox(height: 20),
           ],
         ),
       ),
