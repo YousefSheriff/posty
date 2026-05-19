@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:posty/Features/posts/presentation/views/create_post/create_post_body.dart';
 import 'package:posty/core/shared/shared_components.dart';
 import 'package:posty/core/utils/app_colors.dart';
 
@@ -10,6 +11,7 @@ class CreatePostScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: customAppBar(context, 'New Post',false),
+      body: CreatePostBody(),
     );
   }
 }
