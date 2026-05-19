@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:posty/core/local/cache_helper.dart';
 import 'package:posty/core/theme/theme_states.dart';
 
 class ThemeCubit extends Cubit<ThemeStates> {
@@ -10,11 +11,24 @@ class ThemeCubit extends Cubit<ThemeStates> {
   }
 
   bool isDark = false;
-
-  void toggleTheme() {
-    isDark = !isDark;
-    emit(ThemeChangedState());
+  void toggleTheme({bool? fromShared})
+  {
+    if (fromShared != null )
+    {
+      isDark = fromShared;
+    }
+    else
+    {
+      isDark= !isDark;
+    }
+    CacheHelper.saveData(key: 'isDark', value: isDark).then((value)
+    {
+      emit(ThemeChangedState());
+    });
   }
+
+
+
 
   ThemeData get lightTheme {
     return ThemeData(

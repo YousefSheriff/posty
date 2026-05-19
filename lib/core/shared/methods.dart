@@ -1,14 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:posty/core/local/cache_helper.dart';
 import 'package:posty/core/utils/app_routes.dart';
+
+String ?uId ;
+
+bool? isDark ;
+
+
 
 void navigateToAuthScreen (BuildContext context)
 {
-  Future.delayed(const Duration(milliseconds: 5800), ()
+  CacheHelper.saveData(key: 'splash', value: true,).then((value)
   {
-    GoRouter.of(context).go(AppRoutes.auth);
+    if(value)
+    {
+      Future.delayed(const Duration(milliseconds: 5800), ()
+      {
+        GoRouter.of(context).go(AppRoutes.auth);
+      });
+    }
   });
+
 }
 
 

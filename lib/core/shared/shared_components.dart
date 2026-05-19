@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:posty/core/local/cache_helper.dart';
 import 'package:posty/core/utils/app_colors.dart';
 import 'package:posty/core/utils/app_routes.dart';
 import 'package:posty/core/utils/app_styles.dart';
@@ -55,16 +56,20 @@ PreferredSizeWidget customAppBar(
         onTap: () {
           if (isOnline)
           {
-            GoRouter.of(context).go(AppRoutes.auth);
+            CacheHelper.removeData(key: 'uId').then((value)
+            {
+              if(value == true)
+              {
+                GoRouter.of(context).go(AppRoutes.auth);
+              }
+            });
           }
         },
         child: Container(
           margin: const EdgeInsets.only(right: 16),
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-            color: isOnline
-                ? AppColors.appPrimaryColor
-                : AppColors.appPrimaryColor.withValues(alpha: 0.5),
+            color: isOnline ? AppColors.appPrimaryColor : AppColors.appPrimaryColor.withValues(alpha: 0.5),
             borderRadius: BorderRadius.circular(10),
           ),
           child: const Icon(Icons.logout, color: Colors.white, size: 20),
@@ -72,11 +77,7 @@ PreferredSizeWidget customAppBar(
       ),
 
     ] : null,
-    title: Text(
-      title,
-      style: AppStyles.textStyle17.copyWith(
-        color: AppColors.textPrimary(isDark),
-      ),
+    title: Text(title, style: AppStyles.textStyle17.copyWith(color: AppColors.textPrimary(isDark),),
     ),
   );
 }

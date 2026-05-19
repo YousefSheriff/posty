@@ -1,11 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:posty/Features/posts/presentation/manager/app_cubit/cubit.dart';
+import 'package:posty/core/local/cache_helper.dart';
 import 'package:posty/core/network/network_cubit/cubit.dart';
 import 'package:posty/core/network/remote/dio_helper.dart';
 import 'package:posty/core/shared/bloc_observer.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:posty/core/shared/methods.dart';
 import 'package:posty/core/theme/theme_cubit.dart';
 import 'package:posty/core/theme/theme_states.dart';
 import 'package:posty/core/utils/app_routes.dart';
@@ -17,11 +19,20 @@ void main()async
   await Firebase.initializeApp();
   Bloc.observer = MyBlocObserver();
   DioHelper.init();
-  runApp(const MyApp());
+  await CacheHelper.init();
+  isDark = CacheHelper.getData(key: 'isDark');
+
+  print('////////////////////////////////');
+  print(isDark);
+  print(uId);
+  print('////////////////////////////////');
+
+  runApp(MyApp(isDark: isDark,));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+    final bool ?isDark;
+    const MyApp({super.key, required this.isDark,});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +51,7 @@ class MyApp extends StatelessWidget {
             }),
         BlocProvider(create: (context)
         {
-          return ThemeCubit();
+          return ThemeCubit()..toggleTheme(fromShared: isDark);
         }),
 
 

@@ -17,41 +17,37 @@ abstract class AppRoutes {
   static const createPost = '/createPost';
 
   static final routers = GoRouter(
-      routes:
-      [
-        GoRoute(
-          path: splash,
-          builder:(context , state) {
-            return const SplashScreen();
-          },
+    routes: [
+      GoRoute(
+        path: splash,
+        builder: (context, state) => const SplashScreen(),
+      ),
+      GoRoute(
+        path: auth,
+        builder: (context, state) => const AuthScreen(),
+      ),
+      GoRoute(
+        path: login,
+        builder: (context, state) => const LoginScreen(),
+      ),
+      GoRoute(
+        path: register,
+        builder: (context, state) => const RegisterScreen(),
+      ),
+      GoRoute(
+        path: homePosts,
+        builder: (context, state) => const PostsScreen(),
+      ),
+      GoRoute(
+        path: postDetail,
+        builder: (context, state) => PostDetailsScreen(
+          postId: state.extra.toString(),
         ),
-        GoRoute(
-          path: auth,
-          builder:(context , state)=> const AuthScreen(),
-        ),
-        GoRoute(
-          path: login,
-          builder:(context , state)=> const LoginScreen(),
-        ),
-        GoRoute(
-          path: register,
-          builder:(context , state)=> const RegisterScreen(),
-        ),
-        GoRoute(
-          path: homePosts,
-          builder:(context , state)=> const PostsScreen(),
-        ),
-        GoRoute(
-          path: postDetail,
-          builder: (context, state) => PostDetailsScreen(
-            postId: state.extra.toString(),
-          ),
-        ),
-        GoRoute(
-          path: createPost,
-          builder: (context, state) => CreatePostScreen(),
-        ),
-      ]
+      ),
+      GoRoute(
+        path: createPost,
+        builder: (context, state) => const CreatePostScreen(),
+      ),
+    ],
   );
-
 }

@@ -42,6 +42,7 @@ class PostsScreen extends StatelessWidget {
               floatingActionButton: FloatingActionButton(
                 onPressed: ()
                 {
+
                   themeCubit.toggleTheme();
                 },
                 backgroundColor: AppColors.appPrimaryColor,

@@ -10,6 +10,7 @@ import 'package:posty/Features/auth/presentation/views/widgets/footer_widget.dar
 import 'package:posty/Features/auth/presentation/views/login/widgets/options_social_row_widget.dart';
 import 'package:posty/Features/auth/presentation/views/widgets/header_widget.dart';
 import 'package:posty/Features/auth/presentation/views/login/widgets/social_row_widget.dart';
+import 'package:posty/core/local/cache_helper.dart';
 import 'package:posty/core/network/network_cubit/cubit.dart';
 import 'package:posty/core/network/network_cubit/states.dart';
 import 'package:posty/core/shared/methods.dart';
@@ -35,9 +36,16 @@ class LoginScreenBody extends StatelessWidget {
         {
           if (state is LoginSuccessState)
           {
-            showToast(message: "Login Successfully", state: ToastStates.SUCCESS);
+            CacheHelper.saveData(key: 'uId', value: state.uId).then((value)
+            {
+              uId = state.uId;
+              showToast(message: "Login Successfully", state: ToastStates.SUCCESS);
+              GoRouter.of(context).go(AppRoutes.homePosts);
+            });
             GoRouter.of(context).go(AppRoutes.homePosts);
-          } else if (state is LoginErrorState) {
+          }
+          else if (state is LoginErrorState)
+          {
             showToast(message: "Plz enter right data", state: ToastStates.ERROR);
           }
         },
