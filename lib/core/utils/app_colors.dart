@@ -6,6 +6,7 @@ class AppColors {
   static const Color blackColor           = Colors.black;
   static       Color wifiError            = Colors.red.shade700;
   static const Color greenColor           = Colors.green;
+  static const Color greyColor           = Colors.grey;
   static const Color redColor             = Colors.red;
   static const Color appPrimaryColor      = Color(0xFF7C6FF7);
   static const Color appSplashNameColor   = Color(0xFF3B3285);

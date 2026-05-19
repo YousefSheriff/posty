@@ -55,6 +55,7 @@ class PostsCubit extends Cubit<PostsStates> {
   void createPost({
     required String title,
     required String body,
+    required String dateTime,
     int userId = 1,
   }) {
     emit(CreatePostLoadingState());
@@ -65,6 +66,7 @@ class PostsCubit extends Cubit<PostsStates> {
         'title': title,
         'body': body,
         'userId': userId,
+        'dateTime':dateTime,
       },
     ).then((value)
 

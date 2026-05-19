@@ -37,7 +37,7 @@ class PostCardWidget extends StatelessWidget {
               boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.04), blurRadius: 8)],
             ),
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
                   width: 42, height: 42,
@@ -50,7 +50,13 @@ class PostCardWidget extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(post.title.toString(), style: AppStyles.textStyle13, maxLines: 2, overflow: TextOverflow.ellipsis),
+                      Row(
+                        children: [
+                          Expanded(child: Text(post.title.toString(), style: AppStyles.textStyle13, maxLines: 2, overflow: TextOverflow.ellipsis)),
+                          SizedBox(width: 10,),
+                          Text(post.dateTime.toString(), style: AppStyles.textStyle10,),
+                        ],
+                      ),
                       const SizedBox(height: 6),
                       Text(post.body.toString(), style: AppStyles.textStyle12, maxLines: 2, overflow: TextOverflow.ellipsis),
                     ],

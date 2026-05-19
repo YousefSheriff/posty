@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:posty/Features/auth/presentation/views/login/widgets/form_field_widget.dart';
 import 'package:posty/Features/auth/presentation/views/widgets/primary_button_widget.dart';
 import 'package:posty/Features/posts/presentation/manager/app_cubit/cubit.dart';
@@ -85,7 +86,10 @@ class CreatePostBody extends StatelessWidget {
                       {
                         if (formKey.currentState!.validate())
                         {
-                          cubit.createPost(title: titleController.text, body: bodyController.text);
+                          cubit.createPost(title: titleController.text, body: bodyController.text,
+                            dateTime: DateFormat('d MMM \'at\' h:mm a').format(DateTime.now()),
+
+                          );
                         }
                       },
                     ):Opacity(opacity:0.5,child: PrimaryButton(label: 'Publish Post', onTap: () {},)),

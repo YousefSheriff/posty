@@ -5,6 +5,7 @@ abstract class AppStyles
 {
   static const textStyle26 = TextStyle(fontSize: 26,fontWeight: FontWeight.w700, color: AppColors.appSplashNameColor, letterSpacing: 8,);
   static const textStyle28 = TextStyle(fontSize: 26,);
+  static const textStyle10 = TextStyle(fontSize: 10,color: AppColors.greyColor,);
   static const textStyle11 = TextStyle(fontSize: 11,fontWeight: FontWeight.normal, color: AppColors.textSecondaryColor,);
   static const textStyle12 = TextStyle(fontSize: 12,fontWeight: FontWeight.normal, color: AppColors.textSecondaryColor, height: 1.5,);
   static const textStyle13 = TextStyle(fontSize: 13,fontWeight: FontWeight.w600, color: AppColors.textPrimaryColor,);
