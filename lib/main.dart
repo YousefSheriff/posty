@@ -42,6 +42,7 @@ void main() async {
   {
     initialRoute = AppRoutes.splash;
   }
+  appRouter = AppRoutes.createRouter(initialRoute: initialRoute);
 
   runApp(MyApp(isDark: isDark, initialRoute: initialRoute));
 }
@@ -78,7 +79,7 @@ class MyApp extends StatelessWidget {
             theme: themeCubit.lightTheme,
             darkTheme: themeCubit.darkTheme,
             themeMode: themeCubit.isDark ? ThemeMode.dark : ThemeMode.light,
-            routerConfig: AppRoutes.createRouter(initialRoute: initialRoute),
+            routerConfig: appRouter,
           );
         },
       ),

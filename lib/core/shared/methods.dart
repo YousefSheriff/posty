@@ -10,6 +10,8 @@ bool? isDark ;
 
 bool? splash;
 
+late final GoRouter appRouter;
+
 
 
 void navigateToAuthScreen (BuildContext context)
@@ -20,7 +22,9 @@ void navigateToAuthScreen (BuildContext context)
     {
       Future.delayed(const Duration(milliseconds: 5800), ()
       {
-        GoRouter.of(context).go(AppRoutes.auth);
+        if (context.mounted) {
+          GoRouter.of(context).go(AppRoutes.auth);
+        }
       });
     }
   });
