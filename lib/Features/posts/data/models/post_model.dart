@@ -15,14 +15,4 @@ class PostModel {
         dateTime = json['dateTime'];
 
 
-  Map<String, dynamic> toMap()
-  {
-    return {
-    'id':        id,
-    'userId':    userId,
-    'title':     title,
-    'body':      body,
-    'dateTime': dateTime,
-  };
-  }
 }
