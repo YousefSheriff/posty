@@ -12,49 +12,62 @@ import 'package:posty/core/theme/theme_cubit.dart';
 import 'package:posty/core/theme/theme_states.dart';
 import 'package:posty/core/utils/app_routes.dart';
 
-
-void main()async
-{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   Bloc.observer = MyBlocObserver();
   DioHelper.init();
   await CacheHelper.init();
   isDark = CacheHelper.getData(key: 'isDark');
-
+  uId = CacheHelper.getData(key: 'uId');
+  splash = CacheHelper.getData(key: 'splash');
   print('////////////////////////////////');
   print(isDark);
   print(uId);
+  print(splash);
   print('////////////////////////////////');
 
-  runApp(MyApp(isDark: isDark,));
-}
+  String initialRoute;
 
+  if (splash != null)
+  {
+    if (uId != null)
+    {
+      initialRoute = AppRoutes.homePosts;
+    } else
+    {
+      initialRoute = AppRoutes.auth;
+    }
+  } else
+  {
+    initialRoute = AppRoutes.splash;
+  }
+
+  runApp(MyApp(isDark: isDark, initialRoute: initialRoute));
+}
 class MyApp extends StatelessWidget {
-    final bool ?isDark;
-    const MyApp({super.key, required this.isDark,});
+  final bool? isDark;
+  final String initialRoute;
+
+  const MyApp({
+    super.key,
+    required this.isDark,
+    required this.initialRoute,
+  });
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers:
-      [
-        BlocProvider(
-            create: (context)
-            {
-              return ConnectivityCubit();
-            }),
-        BlocProvider(
-            create: (context)
-            {
-              return PostsCubit()..getPosts();
-            }),
-        BlocProvider(create: (context)
-        {
-          return ThemeCubit()..toggleTheme(fromShared: isDark);
+      providers: [
+        BlocProvider(create: (context) {
+          return ConnectivityCubit();
         }),
-
-
+        BlocProvider(create: (context) {
+          return PostsCubit()..getPosts();
+        }),
+        BlocProvider(create: (context) {
+          return ThemeCubit()..toggleTheme(fromShared: isDark);
+        },),
       ],
       child: BlocBuilder<ThemeCubit, ThemeStates>(
         builder: (context, themeState) {
@@ -65,7 +78,7 @@ class MyApp extends StatelessWidget {
             theme: themeCubit.lightTheme,
             darkTheme: themeCubit.darkTheme,
             themeMode: themeCubit.isDark ? ThemeMode.dark : ThemeMode.light,
-            routerConfig: AppRoutes.routers,
+            routerConfig: AppRoutes.createRouter(initialRoute: initialRoute),
           );
         },
       ),

@@ -6,7 +6,6 @@ import 'package:posty/Features/posts/presentation/views/create_post/create_post_
 import 'package:posty/Features/posts/presentation/views/home_posts/posts_screen.dart';
 import 'package:posty/Features/posts/presentation/views/post_details/post_details_screen.dart';
 import 'package:posty/Features/splash/presentation/views/splash_screen.dart';
-
 abstract class AppRoutes {
   static const splash = '/';
   static const auth = '/auth';
@@ -16,38 +15,43 @@ abstract class AppRoutes {
   static const postDetail = '/postDetail';
   static const createPost = '/createPost';
 
-  static final routers = GoRouter(
-    routes: [
-      GoRoute(
-        path: splash,
-        builder: (context, state) => const SplashScreen(),
-      ),
-      GoRoute(
-        path: auth,
-        builder: (context, state) => const AuthScreen(),
-      ),
-      GoRoute(
-        path: login,
-        builder: (context, state) => const LoginScreen(),
-      ),
-      GoRoute(
-        path: register,
-        builder: (context, state) => const RegisterScreen(),
-      ),
-      GoRoute(
-        path: homePosts,
-        builder: (context, state) => const PostsScreen(),
-      ),
-      GoRoute(
-        path: postDetail,
-        builder: (context, state) => PostDetailsScreen(
-          postId: state.extra.toString(),
+  static GoRouter createRouter({required String initialRoute})
+  {
+
+    return GoRouter(
+      initialLocation: initialRoute,
+      routes: [
+        GoRoute(
+          path: splash,
+          builder: (context, state) => const SplashScreen(),
         ),
-      ),
-      GoRoute(
-        path: createPost,
-        builder: (context, state) => const CreatePostScreen(),
-      ),
-    ],
-  );
+        GoRoute(
+          path: auth,
+          builder: (context, state) => const AuthScreen(),
+        ),
+        GoRoute(
+          path: login,
+          builder: (context, state) => const LoginScreen(),
+        ),
+        GoRoute(
+          path: register,
+          builder: (context, state) => const RegisterScreen(),
+        ),
+        GoRoute(
+          path: homePosts,
+          builder: (context, state) => const PostsScreen(),
+        ),
+        GoRoute(
+          path: postDetail,
+          builder: (context, state) => PostDetailsScreen(
+            postId: state.extra.toString(),
+          ),
+        ),
+        GoRoute(
+          path: createPost,
+          builder: (context, state) => const CreatePostScreen(),
+        ),
+      ],
+    );
+  }
 }

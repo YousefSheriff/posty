@@ -8,6 +8,8 @@ String ?uId ;
 
 bool? isDark ;
 
+bool? splash;
+
 
 
 void navigateToAuthScreen (BuildContext context)
